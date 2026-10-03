@@ -1,0 +1,7 @@
+titan-board/
+.env
+__pycache__/
+.venv/
+work/
+*.webm
+!demo/*.webm
