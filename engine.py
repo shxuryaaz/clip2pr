@@ -86,12 +86,15 @@ class Fix(BaseModel):
 PROMPT = """You are a senior engineer fixing a bug. The video is a screen recording from a user.
 They typed no description; the recording is the whole bug report.
 
-1. Watch the video closely. List what the user does, with timestamps.
-2. Find the moment the app does something wrong. Read numbers and text off the screen exactly,
-   then work out what the correct values should have been.
+1. Watch the whole video, to the last frame. List what the user does, with timestamps.
+   People stop recording right after the bug, so the ending matters most.
+2. Find what the app does wrong. Read numbers and text off the screen exactly, then work out what
+   the correct values should have been. If several things look off, pick the one with real-world
+   damage (money charged wrongly, data lost, user blocked) over anything cosmetic.
 3. Read the repository below and find the code that produces exactly that wrong behaviour.
    Ignore code that merely looks odd but does not cause what the video shows.
-4. Make the smallest fix as find/replace edits. Each `find` is copied character-for-character
+4. The fix must make the bad outcome impossible, not hide its symptoms.
+   Make the smallest fix as find/replace edits. Each `find` is copied character-for-character
    from the file (whole lines, indentation included) and appears exactly once in it.
 
 Repository {owner}/{repo}:
@@ -123,7 +126,8 @@ def analyze(video_path: str, owner: str, repo: str, files: dict[str, str], on_st
             busy = isinstance(e, httpx.HTTPError) or e.code in (429, 500, 503, 504)
             if not busy or i == len(tries) - 1:
                 raise
-            on_step(f"{model} is busy, trying {tries[i + 1][0]}")
+            why = "is out of free quota" if getattr(e, "code", 0) == 429 else "is busy"
+            on_step(f"{model} {why}, trying {tries[i + 1][0]}")
     fix: Fix = resp.parsed
     if not fix.edits:
         raise RuntimeError("Gemini found no code change to make")
