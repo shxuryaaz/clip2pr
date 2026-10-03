@@ -21,7 +21,7 @@ To use it on your own app, drop your own recording on the left and paste your re
 
 ## Requirements
 
-- [uv](https://docs.astral.sh/uv/) (it installs Python 3.13 and the dependencies on first run)
+- [uv](https://docs.astral.sh/uv/) (it installs Python 3.13+ and the dependencies on first run)
 - [GitHub CLI](https://cli.github.com/) logged in, or `GITHUB_TOKEN=...` in `.env`
 - A Gemini API key
 

@@ -92,7 +92,7 @@ def stack_slide(p):
     redact(p, "Frameworks /", "Third-party", "Replace each", "Models,", "Server,", "Where and", "Hosting,")
     cards = {
         (45, 252, 262, 306): "HTML, CSS and plain JavaScript. Live progress streamed from the server, plus a clickable bug timeline over the video.",
-        (294, 252, 511, 306): "Python 3.13, FastAPI and Uvicorn. Streams every step to the browser as newline-delimited JSON.",
+        (294, 252, 511, 306): "Python 3.13+, FastAPI and Uvicorn. Streams every step to the browser as newline-delimited JSON.",
         (542, 252, 760, 306): "None needed. Code is read fresh from GitHub each run. The video sits in Gemini's file store for 48 hours.",
         (45, 358, 262, 412): "<b>Gemini API</b> watches the video and writes the fix. <b>Gemini Files API</b> takes the upload. <b>GitHub REST API</b> reads the repo and opens the PR.",
         (294, 358, 511, 412): "Gemini 3.8 Flash with structured JSON output. Falls back to 3.7 and 3.5 Flash when busy. About 3,700 tokens per fix.",
