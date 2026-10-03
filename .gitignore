@@ -5,3 +5,6 @@ __pycache__/
 work/
 *.webm
 !demo/*.mp4
+deck/template.pdf
+deck/*.png
+deck/*.pdf
