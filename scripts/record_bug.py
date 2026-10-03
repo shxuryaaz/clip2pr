@@ -51,13 +51,9 @@ def main(url: str, out: str) -> None:
             page.wait_for_timeout(pause)
 
         click('button[data-id="hoodie"]')
-        click('button[data-id="tee"]')
-        click("#coupon", 400)
-        page.keyboard.type("HACK20", delay=150)
-        page.wait_for_timeout(800)
-        click("#apply", 2200)
-        click("#apply", 2500)  # the user taps Apply again
-        click("#pay", 3000)
+        click("#pay", 2500)
+        click('button[data-id="stickers"]', 2000)  # one more thing after paying
+        click("#pay", 3000)  # and gets charged again
 
         video = page.video
         ctx.close()
