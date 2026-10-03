@@ -4,4 +4,4 @@ __pycache__/
 .venv/
 work/
 *.webm
-!demo/*.webm
+!demo/*.mp4

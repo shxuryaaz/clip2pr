@@ -1,8 +1,9 @@
 """Record the demo shop bug as a video, the way a user would.
 
-uv run scripts/record_bug.py <shop url or path> <out.webm>
+uv run scripts/record_bug.py <shop url or path> <out.mp4>
 """
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -58,7 +59,9 @@ def main(url: str, out: str) -> None:
         video = page.video
         ctx.close()
         browser.close()
-        shutil.move(video.path(), out)
+        # Playwright's webm has no duration, so browsers can't seek it. mp4 plays everywhere.
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", video.path(), "-c:v", "libx264",
+                        "-pix_fmt", "yuv420p", "-movflags", "+faststart", out], check=True)
     shutil.rmtree(tmp, ignore_errors=True)
     print(out)
 

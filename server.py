@@ -20,6 +20,11 @@ def index():
     return FileResponse(STATIC / "index.html")
 
 
+@app.get("/sample")
+def sample():
+    return FileResponse(Path(__file__).parent / "demo" / "double-charge.mp4", media_type="video/mp4")
+
+
 def run(video_path: str, repo_url: str, out: queue.Queue) -> None:
     step = lambda msg: out.put({"step": msg})
     try:
