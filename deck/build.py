@@ -8,8 +8,8 @@ from pathlib import Path
 import pymupdf
 
 HERE = Path(__file__).parent
-TEAM = "Clip2PR"  # must match the team name on Unstop exactly
-MEMBERS = ["Shaurya Singh"]
+TEAM = "Code monarchs"  # must match the team name on Unstop exactly
+MEMBERS = ["Kanika Samanta", "Palak Gurjar", "Manish Kumar", "Ishaan Pandey"]
 TRACKS = [("AI / ML", "#f2a93b"), ("Open Innovation", "#2e86de")]
 
 NAVY, GRAY, LABEL = "#1b2a4a", "#8a93a6", "#5a6b8c"
